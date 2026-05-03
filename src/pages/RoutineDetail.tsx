@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Play, Trash2, Zap, Video } from 'lucide-react';
+import { Play, Trash2, Zap, Video, Pencil, Coffee } from 'lucide-react';
 import { AppShell } from '@/components/AppShell';
 import { PageHeader } from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
@@ -43,9 +43,18 @@ export default function RoutineDetail() {
   return (
     <AppShell>
       <PageHeader back="/routines" right={
-        <button onClick={onDelete} className="w-10 h-10 -mr-2 rounded-full hover:bg-background-soft flex items-center justify-center text-muted-foreground hover:text-destructive tap-scale">
-          <Trash2 className="w-4 h-4" />
-        </button>
+        <div className="flex items-center -mr-2">
+          <Link
+            to={`/routines/${routine.id}/edit`}
+            className="w-10 h-10 rounded-full hover:bg-background-soft flex items-center justify-center text-muted-foreground hover:text-foreground tap-scale"
+            aria-label="Edit routine"
+          >
+            <Pencil className="w-4 h-4" />
+          </Link>
+          <button onClick={onDelete} className="w-10 h-10 rounded-full hover:bg-background-soft flex items-center justify-center text-muted-foreground hover:text-destructive tap-scale" aria-label="Delete routine">
+            <Trash2 className="w-4 h-4" />
+          </button>
+        </div>
       } />
       <main className="flex-1 px-6 py-2 pb-6">
         <section className="animate-fade-in-up">
@@ -70,21 +79,31 @@ export default function RoutineDetail() {
           <ul className="space-y-2">
             {routine.sections.map((s, i) => {
               const active = selectedSection === s.id;
+              const isBreak = !!s.isBreak;
               return (
                 <li key={s.id}>
                   <button
-                    onClick={() => setSelectedSection(active ? undefined : s.id)}
-                    className={`w-full text-left p-4 rounded-2xl flex items-center gap-4 transition-colors tap-scale ${
-                      active ? 'bg-primary/15 ring-1 ring-primary' : 'bg-card'
+                    onClick={() => !isBreak && setSelectedSection(active ? undefined : s.id)}
+                    disabled={isBreak}
+                    className={`w-full text-left p-4 rounded-2xl flex items-center gap-4 transition-colors ${
+                      isBreak
+                        ? 'bg-background-soft border border-dashed border-border opacity-80 cursor-default'
+                        : active
+                        ? 'bg-primary/15 ring-1 ring-primary tap-scale'
+                        : 'bg-card tap-scale'
                     }`}
                   >
                     <div className={`w-10 h-10 rounded-xl flex items-center justify-center font-display font-bold ${
-                      active ? 'bg-primary text-primary-foreground' : 'bg-background-soft text-muted-foreground'
+                      isBreak
+                        ? 'bg-background text-muted-foreground'
+                        : active ? 'bg-primary text-primary-foreground' : 'bg-background-soft text-muted-foreground'
                     }`}>
-                      {i + 1}
+                      {isBreak ? <Coffee className="w-4 h-4" /> : i + 1}
                     </div>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium truncate">{s.name}</p>
+                      <p className="font-medium truncate">
+                        {s.name} {isBreak && <span className="text-xs text-muted-foreground font-normal">· break</span>}
+                      </p>
                       <p className="text-xs text-muted-foreground mt-0.5">
                         {fmtTime(s.start)} – {fmtTime(s.end)} · {fmtTime(s.end - s.start)}
                       </p>
