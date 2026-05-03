@@ -12,6 +12,7 @@ import Record from "./pages/Record";
 import Review from "./pages/Review";
 import Reflect from "./pages/Reflect";
 import Profile from "./pages/Profile";
+import History from "./pages/History";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -32,6 +33,7 @@ const App = () => (
           <Route path="/review/:sessionId" element={<Review />} />
           <Route path="/reflect/:sessionId" element={<Reflect />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/history" element={<History />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

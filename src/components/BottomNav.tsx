@@ -1,10 +1,11 @@
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, ListVideo, User } from 'lucide-react';
+import { Home, ListVideo, History as HistoryIcon, User } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const items = [
   { to: '/', label: 'Home', icon: Home, exact: true },
   { to: '/routines', label: 'Routines', icon: ListVideo },
+  { to: '/history', label: 'History', icon: HistoryIcon },
   { to: '/profile', label: 'Profile', icon: User },
 ];
 
