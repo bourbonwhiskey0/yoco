@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Routines from "./pages/Routines";
 import RoutineDetail from "./pages/RoutineDetail";
 import NewRoutine from "./pages/NewRoutine";
+import EditRoutine from "./pages/EditRoutine";
 import Practice from "./pages/Practice";
 import Record from "./pages/Record";
 import Review from "./pages/Review";
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/routines" element={<Routines />} />
           <Route path="/routines/new" element={<NewRoutine />} />
           <Route path="/routines/:id" element={<RoutineDetail />} />
+          <Route path="/routines/:id/edit" element={<EditRoutine />} />
           <Route path="/practice/:routineId" element={<Practice />} />
           <Route path="/record/:routineId" element={<Record />} />
           <Route path="/review/:sessionId" element={<Review />} />

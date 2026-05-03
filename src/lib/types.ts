@@ -3,6 +3,7 @@ export type Section = {
   name: string;
   start: number; // seconds
   end: number;   // seconds
+  isBreak?: boolean;
 };
 
 export type Routine = {
