@@ -1,12 +1,19 @@
 import { Link } from 'react-router-dom';
-import { Plus, Clock, Layers } from 'lucide-react';
+import { useState, useMemo } from 'react';
+import { Plus, Clock, Layers, Search } from 'lucide-react';
 import { AppShell } from '@/components/AppShell';
 import { PageHeader } from '@/components/PageHeader';
+import { Input } from '@/components/ui/input';
 import { useStore } from '@/lib/store';
 import { fmtTime } from '@/lib/format';
 
 export default function Routines() {
   const routines = useStore(s => s.routines);
+  const [query, setQuery] = useState('');
+  const filtered = useMemo(
+    () => routines.filter(r => r.name.toLowerCase().includes(query.trim().toLowerCase())),
+    [routines, query]
+  );
   return (
     <AppShell>
       <PageHeader
@@ -22,6 +29,19 @@ export default function Routines() {
         }
       />
       <main className="flex-1 px-5 py-4 space-y-3">
+        <p className="text-xs uppercase tracking-wider text-muted-foreground">
+          {filtered.length} of {routines.length} {routines.length === 1 ? 'routine' : 'routines'}
+        </p>
+        <div className="relative">
+          <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
+          <Input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search routines"
+            className="pl-9 rounded-2xl bg-card border-border"
+          />
+        </div>
+
         {routines.length === 0 && (
           <div className="rounded-2xl border border-dashed border-border p-10 text-center mt-10">
             <p className="text-sm text-muted-foreground mb-4">No routines yet</p>
@@ -31,7 +51,11 @@ export default function Routines() {
           </div>
         )}
 
-        {routines.map((r, idx) => (
+        {routines.length > 0 && filtered.length === 0 && (
+          <p className="text-sm text-muted-foreground text-center py-8">No routines match "{query}".</p>
+        )}
+
+        {filtered.map((r, idx) => (
           <Link
             key={r.id}
             to={`/routines/${r.id}`}
