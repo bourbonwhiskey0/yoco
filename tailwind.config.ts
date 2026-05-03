@@ -78,8 +78,8 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 4px)",
         sm: "calc(var(--radius) - 8px)",
-        '2xl': "1.5rem",
-        '3xl': "2rem",
+        '2xl': "0.875rem",
+        '3xl': "1.125rem",
       },
       keyframes: {
         "accordion-down": { from: { height: "0" }, to: { height: "var(--radix-accordion-content-height)" } },
