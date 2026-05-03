@@ -12,8 +12,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'Inter', 'sans-serif'],
+        sans: ['ui-rounded', 'SF Pro Rounded', '-apple-system', 'Nunito', 'system-ui', 'sans-serif'],
+        display: ['ui-rounded', 'SF Pro Rounded', '-apple-system', 'Nunito', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
