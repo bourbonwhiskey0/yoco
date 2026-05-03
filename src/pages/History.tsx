@@ -45,9 +45,11 @@ export default function History() {
               <Plus className="w-4 h-4" /> Create routine
             </Link>
           </div>
+        ) : filtered.length === 0 ? (
+          <p className="text-sm text-muted-foreground text-center py-8">No sessions match "{query}".</p>
         ) : (
           <ul className="space-y-2">
-            {sessions.map(s => (
+            {filtered.map(s => (
               <li key={s.id} className="flex items-center gap-3 p-3 rounded-2xl bg-card">
                 <Link to={`/review/${s.id}`} className="flex items-center gap-3 flex-1 min-w-0 tap-scale">
                   <div className="w-10 h-10 rounded-xl bg-background-soft flex items-center justify-center">
