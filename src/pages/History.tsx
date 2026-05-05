@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { Trash2, Sparkles, Plus, Search } from 'lucide-react';
 import { AppShell } from '@/components/AppShell';
-import { PageHeader } from '@/components/PageHeader';
+import { PageHero } from '@/components/PageHero';
 import { Input } from '@/components/ui/input';
 import { useStore } from '@/lib/store';
 import { fmtTime, relativeTime } from '@/lib/format';
@@ -18,11 +18,12 @@ export default function History() {
 
   return (
     <AppShell>
-      <PageHeader title="History" />
+      <PageHero
+        eyebrow="Activity"
+        title="History"
+        subtitle={`${filtered.length} of ${sessions.length} ${sessions.length === 1 ? 'session' : 'sessions'}`}
+      />
       <main className="flex-1 px-6 py-4 space-y-4">
-        <p className="text-xs uppercase tracking-wider text-muted-foreground">
-          {filtered.length} of {sessions.length} {sessions.length === 1 ? 'session' : 'sessions'}
-        </p>
         <div className="relative">
           <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input

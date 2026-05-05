@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Play, Plus, Sparkles, TrendingUp, Video } from 'lucide-react';
 import { AppShell } from '@/components/AppShell';
+import { PageHero } from '@/components/PageHero';
 import { useStore } from '@/lib/store';
 import { fmtTime, relativeTime } from '@/lib/format';
 
@@ -12,26 +13,13 @@ export default function Home() {
 
   return (
     <AppShell>
-      <div className="bg-gradient-hero">
-        <header className="safe-top px-6 pt-6 pb-2 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-gradient-accent flex items-center justify-center shadow-glow">
-              <span className="text-primary-foreground font-display font-bold text-lg">Y</span>
-            </div>
-            <span className="font-display font-bold text-lg">YoCo</span>
-          </div>
-          <span className="text-xs text-muted-foreground">{new Date().toLocaleDateString(undefined, { weekday: 'long' })}</span>
-        </header>
+      <PageHero
+        eyebrow="Today"
+        title={<>Ready to <span className="text-primary">level up</span>?</>}
+        subtitle="Pick up where you left off."
+      />
 
-        <section className="px-6 pt-6 pb-8 animate-fade-in-up">
-          <p className="text-sm text-muted-foreground">Welcome back</p>
-          <h1 className="font-display text-3xl font-bold leading-tight text-balance mt-1">
-            Ready to <span className="text-primary">level up</span> your routine?
-          </h1>
-        </section>
-      </div>
-
-      <main className="flex-1 px-6 pb-6 space-y-8">
+      <main className="flex-1 px-6 pb-6 space-y-8 pt-2">
         {/* Quick start */}
         <section>
           <Link

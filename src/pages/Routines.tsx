@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState, useMemo } from 'react';
 import { Plus, Clock, Layers, Search } from 'lucide-react';
 import { AppShell } from '@/components/AppShell';
-import { PageHeader } from '@/components/PageHeader';
+import { PageHero } from '@/components/PageHero';
 import { Input } from '@/components/ui/input';
 import { useStore } from '@/lib/store';
 import { fmtTime } from '@/lib/format';
@@ -16,12 +16,14 @@ export default function Routines() {
   );
   return (
     <AppShell>
-      <PageHeader
+      <PageHero
+        eyebrow="Library"
         title="Routines"
+        subtitle={`${filtered.length} of ${routines.length} ${routines.length === 1 ? 'routine' : 'routines'}`}
         right={
           <Link
             to="/routines/new"
-            className="w-10 h-10 -mr-2 flex items-center justify-center rounded-full bg-primary text-primary-foreground tap-scale"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground tap-scale"
             aria-label="New routine"
           >
             <Plus className="w-5 h-5" />
@@ -29,9 +31,6 @@ export default function Routines() {
         }
       />
       <main className="flex-1 px-5 py-4 space-y-3">
-        <p className="text-xs uppercase tracking-wider text-muted-foreground">
-          {filtered.length} of {routines.length} {routines.length === 1 ? 'routine' : 'routines'}
-        </p>
         <div className="relative">
           <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <Input
@@ -78,7 +77,6 @@ export default function Routines() {
                 {r.name.charAt(0).toUpperCase()}
               </div>
             </div>
-            {/* Section ribbon */}
             {r.sections.length > 0 && (
               <div className="mt-4 flex h-1.5 rounded-full overflow-hidden bg-background-soft">
                 {r.sections.map((s, i) => {
