@@ -25,7 +25,11 @@ function initials(name: string | null | undefined, email: string | null | undefi
 
 export function PageHero({ greeting, title, eyebrow, subtitle, right }: Props) {
   const { profile, user } = useAuth();
-  const name = profile?.display_name || user?.email?.split('@')[0] || 'player';
+  const name =
+    profile?.first_name?.trim() ||
+    profile?.display_name?.split(' ')[0] ||
+    user?.email?.split('@')[0] ||
+    'player';
   const hi = greeting ?? `${greetingFor()}, ${name}`;
 
   return (

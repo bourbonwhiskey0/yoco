@@ -81,10 +81,15 @@ export default function Routines() {
               <div className="mt-4 flex h-1.5 rounded-full overflow-hidden bg-background-soft">
                 {r.sections.map((s, i) => {
                   const w = ((s.end - s.start) / r.duration) * 100;
+                  const cls = s.isBreak
+                    ? 'bg-muted-foreground/30'
+                    : i % 2 === 0
+                    ? 'bg-primary'
+                    : 'bg-primary/50';
                   return (
                     <div
                       key={s.id}
-                      className={i % 2 === 0 ? 'bg-primary' : 'bg-primary/50'}
+                      className={cls}
                       style={{ width: `${w}%` }}
                     />
                   );
