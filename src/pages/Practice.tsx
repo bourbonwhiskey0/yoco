@@ -122,7 +122,11 @@ export default function Practice() {
               return (
                 <div key={s.id} style={{ width: `${w}%` }} className="h-1.5 rounded-full overflow-hidden bg-background-soft">
                   <div
-                    className={`h-full ${passed ? 'bg-primary' : active ? 'bg-primary/70' : 'bg-transparent'}`}
+                    className={`h-full ${
+                      s.isBreak
+                        ? passed || active ? 'bg-muted-foreground/40' : 'bg-transparent'
+                        : passed ? 'bg-primary' : active ? 'bg-primary/70' : 'bg-transparent'
+                    }`}
                     style={{ width: passed ? '100%' : active ? `${((elapsedSec - s.start) / (s.end - s.start)) * 100}%` : '0%' }}
                   />
                 </div>

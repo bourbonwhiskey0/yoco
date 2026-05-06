@@ -2,7 +2,13 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import type { Session, User } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 
-type Profile = { id: string; display_name: string | null; avatar_url: string | null };
+type Profile = {
+  id: string;
+  display_name: string | null;
+  avatar_url: string | null;
+  first_name: string | null;
+  last_name: string | null;
+};
 
 type Ctx = {
   session: Session | null;
