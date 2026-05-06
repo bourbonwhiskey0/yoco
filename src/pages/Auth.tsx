@@ -20,7 +20,14 @@ export default function Auth() {
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [busy, setBusy] = useState(false);
+
+  const signupSchema = schema.extend({
+    firstName: z.string().trim().min(1, 'First name is required').max(60),
+    lastName: z.string().trim().min(1, 'Last name is required').max(60),
+  });
 
   useEffect(() => {
     if (session) navigate('/', { replace: true });
@@ -31,22 +38,28 @@ export default function Auth() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const parsed = schema.safeParse({ email, password });
-    if (!parsed.success) {
-      toast.error(parsed.error.issues[0].message);
-      return;
-    }
     setBusy(true);
     try {
       if (mode === 'signup') {
+        const parsed = signupSchema.safeParse({ email, password, firstName, lastName });
+        if (!parsed.success) { toast.error(parsed.error.issues[0].message); setBusy(false); return; }
         const { error } = await supabase.auth.signUp({
           email: parsed.data.email,
           password: parsed.data.password,
-          options: { emailRedirectTo: window.location.origin },
+          options: {
+            emailRedirectTo: window.location.origin,
+            data: {
+              first_name: parsed.data.firstName,
+              last_name: parsed.data.lastName,
+              display_name: `${parsed.data.firstName} ${parsed.data.lastName}`.trim(),
+            },
+          },
         });
         if (error) throw error;
         toast.success('Account created');
       } else {
+        const parsed = schema.safeParse({ email, password });
+        if (!parsed.success) { toast.error(parsed.error.issues[0].message); setBusy(false); return; }
         const { error } = await supabase.auth.signInWithPassword({
           email: parsed.data.email,
           password: parsed.data.password,
@@ -119,12 +132,32 @@ export default function Auth() {
         </div>
 
         <form onSubmit={submit} className="space-y-3">
+          {mode === 'signup' && (
+            <div className="grid grid-cols-2 gap-3">
+              <Input
+                type="text"
+                placeholder="First name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="h-12 rounded-lg bg-card border-border"
+                autoComplete="given-name"
+              />
+              <Input
+                type="text"
+                placeholder="Last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="h-12 rounded-lg bg-card border-border"
+                autoComplete="family-name"
+              />
+            </div>
+          )}
           <Input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-12 rounded-xl bg-card border-border"
+            className="h-12 rounded-lg bg-card border-border"
             autoComplete="email"
           />
           <Input
