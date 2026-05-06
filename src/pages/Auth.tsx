@@ -20,7 +20,14 @@ export default function Auth() {
   const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [busy, setBusy] = useState(false);
+
+  const signupSchema = schema.extend({
+    firstName: z.string().trim().min(1, 'First name is required').max(60),
+    lastName: z.string().trim().min(1, 'Last name is required').max(60),
+  });
 
   useEffect(() => {
     if (session) navigate('/', { replace: true });
