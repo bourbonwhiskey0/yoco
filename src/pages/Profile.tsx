@@ -41,6 +41,31 @@ export default function Profile() {
     toast.success('Profile updated');
   };
 
+  const onPickAvatar = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    e.target.value = '';
+    if (!file || !user) return;
+    if (!file.type.startsWith('image/')) { toast.error('Please choose an image'); return; }
+    if (file.size > 5 * 1024 * 1024) { toast.error('Image must be under 5MB'); return; }
+
+    setUploading(true);
+    const ext = file.name.split('.').pop()?.toLowerCase() || 'jpg';
+    const path = `${user.id}/avatar-${Date.now()}.${ext}`;
+    const { error: upErr } = await supabase.storage.from('avatars').upload(path, file, {
+      cacheControl: '3600', upsert: true, contentType: file.type,
+    });
+    if (upErr) { setUploading(false); toast.error(upErr.message); return; }
+    const { data: pub } = supabase.storage.from('avatars').getPublicUrl(path);
+    const { error: updErr } = await supabase
+      .from('profiles')
+      .update({ avatar_url: pub.publicUrl })
+      .eq('id', user.id);
+    setUploading(false);
+    if (updErr) { toast.error(updErr.message); return; }
+    await refreshProfile();
+    toast.success('Avatar updated');
+  };
+
   return (
     <AppShell>
       <PageHero
@@ -51,9 +76,29 @@ export default function Profile() {
       <main className="flex-1 px-6 py-4 space-y-6">
         <section className="rounded-3xl bg-card p-5">
           <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-accent flex items-center justify-center font-display font-bold text-2xl text-primary-foreground shadow-glow">
-              {(profile?.display_name || user?.email || 'Y').slice(0, 1).toUpperCase()}
-            </div>
+            <button
+              type="button"
+              onClick={() => fileRef.current?.click()}
+              disabled={uploading}
+              className="relative w-16 h-16 rounded-2xl overflow-hidden bg-gradient-accent flex items-center justify-center font-display font-bold text-2xl text-primary-foreground shadow-glow tap-scale group shrink-0"
+              aria-label="Change avatar"
+            >
+              {profile?.avatar_url ? (
+                <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />
+              ) : (
+                <span>{(profile?.display_name || user?.email || 'Y').slice(0, 1).toUpperCase()}</span>
+              )}
+              <span className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity ${uploading ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+                {uploading ? <Loader2 className="w-5 h-5 animate-spin text-white" /> : <Camera className="w-5 h-5 text-white" />}
+              </span>
+            </button>
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={onPickAvatar}
+            />
             <div className="flex-1 min-w-0">
               {editing ? (
                 <div className="flex gap-2">
