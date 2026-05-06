@@ -38,22 +38,28 @@ export default function Auth() {
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const parsed = schema.safeParse({ email, password });
-    if (!parsed.success) {
-      toast.error(parsed.error.issues[0].message);
-      return;
-    }
     setBusy(true);
     try {
       if (mode === 'signup') {
+        const parsed = signupSchema.safeParse({ email, password, firstName, lastName });
+        if (!parsed.success) { toast.error(parsed.error.issues[0].message); setBusy(false); return; }
         const { error } = await supabase.auth.signUp({
           email: parsed.data.email,
           password: parsed.data.password,
-          options: { emailRedirectTo: window.location.origin },
+          options: {
+            emailRedirectTo: window.location.origin,
+            data: {
+              first_name: parsed.data.firstName,
+              last_name: parsed.data.lastName,
+              display_name: `${parsed.data.firstName} ${parsed.data.lastName}`.trim(),
+            },
+          },
         });
         if (error) throw error;
         toast.success('Account created');
       } else {
+        const parsed = schema.safeParse({ email, password });
+        if (!parsed.success) { toast.error(parsed.error.issues[0].message); setBusy(false); return; }
         const { error } = await supabase.auth.signInWithPassword({
           email: parsed.data.email,
           password: parsed.data.password,
