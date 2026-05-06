@@ -132,12 +132,32 @@ export default function Auth() {
         </div>
 
         <form onSubmit={submit} className="space-y-3">
+          {mode === 'signup' && (
+            <div className="grid grid-cols-2 gap-3">
+              <Input
+                type="text"
+                placeholder="First name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="h-12 rounded-lg bg-card border-border"
+                autoComplete="given-name"
+              />
+              <Input
+                type="text"
+                placeholder="Last name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="h-12 rounded-lg bg-card border-border"
+                autoComplete="family-name"
+              />
+            </div>
+          )}
           <Input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-12 rounded-xl bg-card border-border"
+            className="h-12 rounded-lg bg-card border-border"
             autoComplete="email"
           />
           <Input
