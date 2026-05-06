@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { LogOut, Check, Pencil } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { LogOut, Check, Pencil, Camera, Loader2 } from 'lucide-react';
 import { AppShell } from '@/components/AppShell';
 import { PageHero } from '@/components/PageHero';
 import { Input } from '@/components/ui/input';
@@ -20,6 +20,8 @@ export default function Profile() {
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState('');
   const [saving, setSaving] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const fileRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => { setName(profile?.display_name ?? ''); }, [profile?.display_name]);
 
