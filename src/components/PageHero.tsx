@@ -41,7 +41,7 @@ export function PageHero({ greeting, title, eyebrow, subtitle, right }: Props) {
               {eyebrow}
             </p>
           )}
-          <p className="text-sm text-muted-foreground truncate">{hi}</p>
+          <p className="text-base font-medium text-foreground/80 truncate">{hi}</p>
           <h1 className="font-display text-[2rem] leading-[1.05] font-extrabold tracking-tight mt-1.5 text-balance">
             {title}
           </h1>
