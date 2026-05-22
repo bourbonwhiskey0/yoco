@@ -69,7 +69,7 @@ export default function Routines() {
                     <Clock className="w-3.5 h-3.5" /> {fmtTime(r.duration)}
                   </span>
                   <span className="inline-flex items-center gap-1">
-                    <Layers className="w-3.5 h-3.5" /> {r.sections.length} sections
+                    <Layers className="w-3.5 h-3.5" /> {r.sections.length} combos
                   </span>
                 </div>
               </div>

@@ -71,7 +71,7 @@ export function RoutineForm({ initial, submitLabel, onSubmit }: Props) {
         const start = Number(s.start) || 0;
         const len = Number(s.duration) || 0;
         return {
-          name: s.name.trim() || (s.isBreak ? 'Break' : 'Section'),
+          name: s.name.trim() || (s.isBreak ? 'Break' : 'Combo'),
           start,
           end: start + len,
           isBreak: s.isBreak,
@@ -109,7 +109,7 @@ export function RoutineForm({ initial, submitLabel, onSubmit }: Props) {
 
       <section>
         <div className="flex items-center justify-between mb-3">
-          <h3 className="font-display font-semibold">Sections</h3>
+          <h3 className="font-display font-semibold">Combos</h3>
           <div className="flex items-center gap-3">
             <button
               onClick={() => addSection(true)}
@@ -139,14 +139,14 @@ export function RoutineForm({ initial, submitLabel, onSubmit }: Props) {
                 <Input
                   value={s.name}
                   onChange={e => update(i, { name: e.target.value })}
-                  placeholder={s.isBreak ? 'Break' : `Section ${i + 1} name`}
+                  placeholder={s.isBreak ? 'Break' : `Combo ${i + 1} name`}
                   className="h-11 rounded-xl flex-1"
                 />
                 {sections.length > 1 && (
                   <button
                     onClick={() => remove(i)}
                     className="w-10 h-10 rounded-xl bg-background-soft text-muted-foreground hover:text-destructive tap-scale flex items-center justify-center"
-                    aria-label="Remove section"
+                    aria-label="Remove combo"
                   >
                     <Trash2 className="w-4 h-4" />
                   </button>
@@ -176,7 +176,7 @@ export function RoutineForm({ initial, submitLabel, onSubmit }: Props) {
               </div>
               <div className="flex items-center justify-between pt-1">
                 <span className="text-xs text-muted-foreground">
-                  {s.isBreak ? 'Break (no practice)' : 'Practice section'}
+                  {s.isBreak ? 'Break (no practice)' : 'Practice combo'}
                 </span>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-muted-foreground">Break</span>
