@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Play, Plus, Sparkles, TrendingUp, Video } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { AppShell } from '@/components/AppShell';
 import { PageHero } from '@/components/PageHero';
 import { useStore } from '@/lib/store';
@@ -54,7 +55,7 @@ export default function Home() {
         {/* Recent sessions */}
         <section>
           <div className="flex items-center justify-between mb-4">
-            <h3 className="font-display text-lg font-semibold">Recent sessions</h3>
+            <h3 className="font-display text-lg font-semibold">Recent Sessions</h3>
             {recent.length > 0 && (
               <Link to="/history" className="text-xs text-muted-foreground">View all</Link>
             )}
@@ -109,9 +110,11 @@ function EmptyState() {
   return (
     <div className="rounded-2xl border border-dashed border-border p-8 text-center">
       <p className="text-sm text-muted-foreground mb-4">No sessions yet. Practice a routine to start building your timeline.</p>
-      <Link to="/routines/new" className="inline-flex items-center gap-2 text-sm font-medium text-primary">
-        <Plus className="w-4 h-4" /> Create routine
-      </Link>
+      <Button asChild variant="secondary" size="sm">
+        <Link to="/routines/new" className="inline-flex items-center gap-2">
+          <Plus className="w-4 h-4" /> Create Routine
+        </Link>
+      </Button>
     </div>
   );
 }
