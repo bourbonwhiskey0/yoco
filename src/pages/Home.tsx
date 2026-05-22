@@ -36,7 +36,7 @@ export default function Home() {
                   {lastRoutine ? lastRoutine.name : 'Create your first routine'}
                 </h2>
                 {lastRoutine && (
-                  <p className="text-sm text-primary-foreground/80 mt-1">{fmtTime(lastRoutine.duration)} · {lastRoutine.sections.length} sections</p>
+                  <p className="text-sm text-primary-foreground/80 mt-1">{fmtTime(lastRoutine.duration)} · {lastRoutine.sections.length} combos</p>
                 )}
               </div>
               <div className="w-14 h-14 rounded-full bg-primary-foreground/15 backdrop-blur flex items-center justify-center">

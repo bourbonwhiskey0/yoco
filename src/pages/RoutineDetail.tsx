@@ -60,12 +60,12 @@ export default function RoutineDetail() {
         <section className="animate-fade-in-up">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">Routine</p>
           <h1 className="font-display text-3xl font-bold mt-1 text-balance">{routine.name}</h1>
-          <p className="text-sm text-muted-foreground mt-2">{fmtTime(routine.duration)} total · {routine.sections.length} sections</p>
+          <p className="text-sm text-muted-foreground mt-2">{fmtTime(routine.duration)} total · {routine.sections.length} combos</p>
         </section>
 
         <section className="mt-8">
           <div className="flex items-center justify-between mb-3">
-            <h3 className="font-display font-semibold">Sections</h3>
+            <h3 className="font-display font-semibold">Combos</h3>
             <button
               onClick={() => setSelectedSection(undefined)}
               className={`text-xs px-3 py-1 rounded-full transition-colors ${
@@ -113,7 +113,7 @@ export default function RoutineDetail() {
               );
             })}
             {routine.sections.length === 0 && (
-              <li className="text-sm text-muted-foreground text-center py-6">No sections.</li>
+              <li className="text-sm text-muted-foreground text-center py-6">No combos.</li>
             )}
           </ul>
         </section>

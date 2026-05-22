@@ -29,24 +29,24 @@ function generateInsight(opts: {
   sectionName?: string;
 }): string {
   const { emotion, reason, mistakes, goods, sectionName } = opts;
-  const where = sectionName ? `the ${sectionName.toLowerCase()} section` : 'the middle of your routine';
+  const where = sectionName ? `the ${sectionName.toLowerCase()} combo` : 'the middle of your routine';
 
   if (mistakes === 0 && goods > 0) {
     return `Clean run with ${goods} highlight${goods > 1 ? 's' : ''}. Whatever you did to prep — repeat it next time.`;
   }
   if (emotion === 'nervous' && reason === 'rushed') {
-    return `You tend to rush transitions when nervous, especially in ${where}. Try a slow breath between sections.`;
+    return `You tend to rush transitions when nervous, especially in ${where}. Try a slow breath between combos.`;
   }
   if (reason === 'lost_focus') {
-    return `Focus dropped during ${where}. A short pre-section cue (a word or breath) can anchor your attention.`;
+    return `Focus dropped during ${where}. A short pre-combo cue (a word or breath) can anchor your attention.`;
   }
   if (reason === 'forgot_sequence') {
-    return `Memory slip in ${where}. Drill that section in isolation 3× before the next full run.`;
+    return `Memory slip in ${where}. Drill that combo in isolation 3× before the next full run.`;
   }
   if (emotion === 'confident' && mistakes > 2) {
     return `Confidence is great, but precision dipped — ${mistakes} mistakes. Slow the tempo by ~10% on your next pass.`;
   }
-  return `${mistakes} mistake${mistakes !== 1 ? 's' : ''} vs ${goods} highlight${goods !== 1 ? 's' : ''}. Re-watch the marked moments and run that section twice.`;
+  return `${mistakes} mistake${mistakes !== 1 ? 's' : ''} vs ${goods} highlight${goods !== 1 ? 's' : ''}. Re-watch the marked moments and run that combo twice.`;
 }
 
 export default function Reflect() {

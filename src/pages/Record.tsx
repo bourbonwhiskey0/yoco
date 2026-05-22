@@ -195,7 +195,7 @@ export default function Record() {
         <div className="absolute inset-x-0 bottom-0 safe-bottom z-10">
           <div className="mx-5 mb-6 p-5 rounded-3xl glass space-y-4 animate-fade-in-up">
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">{section ? 'Section' : 'Routine'}</p>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">{section ? 'Combo' : 'Routine'}</p>
               <h2 className="font-display text-lg font-semibold">{section?.name ?? routine.name}</h2>
             </div>
 

@@ -82,7 +82,7 @@ export default function Practice() {
       </div>
 
       <main className="relative px-6 mt-8 flex flex-col items-center text-center">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">{section ? 'Section' : 'Routine'}</p>
+        <p className="text-xs uppercase tracking-widest text-muted-foreground">{section ? 'Combo' : 'Routine'}</p>
         <h1 className="font-display text-2xl font-bold mt-1 text-balance">{section?.name ?? routine.name}</h1>
         {!section && currentSection && (
           <p className="text-sm text-primary mt-1 animate-fade-in">Now: {currentSection.name}</p>
@@ -112,7 +112,7 @@ export default function Practice() {
           </div>
         </div>
 
-        {/* Section dots */}
+        {/* Combo dots */}
         {!section && routine.sections.length > 0 && (
           <div className="mt-10 w-full max-w-xs flex gap-1.5">
             {routine.sections.map(s => {
