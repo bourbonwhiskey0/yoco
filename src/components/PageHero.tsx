@@ -39,7 +39,7 @@ export function PageHero({ greeting, title, eyebrow, subtitle, right }: Props) {
           <h1 className="font-display text-[2rem] leading-[1.05] font-extrabold tracking-tight mt-1.5 text-balance">
             {title}
           </h1>
-          {subtitle && <p className="text-sm text-muted-foreground mt-2">{subtitle}</p>}
+          {subtitle && <p className="text-base text-muted-foreground mt-2">{subtitle}</p>}
         </div>
         <div className="flex items-center gap-2 pt-1">
           {right}
