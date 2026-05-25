@@ -49,19 +49,6 @@ export function PageHero({ greeting, title, eyebrow, subtitle, right }: Props) {
         </div>
         <div className="flex items-center gap-2 pt-1">
           {right}
-          {profile?.avatar_url ? (
-            <Link to="/profile" className="w-10 h-10 rounded-full overflow-hidden ring-1 ring-border tap-scale">
-              <img src={profile.avatar_url} alt="" className="w-full h-full object-cover" />
-            </Link>
-          ) : (
-            <Link
-              to="/profile"
-              className="w-10 h-10 rounded-full bg-card ring-1 ring-border flex items-center justify-center font-display font-semibold text-sm tap-scale"
-              aria-label="Profile"
-            >
-              {initials(profile?.display_name, user?.email)}
-            </Link>
-          )}
         </div>
       </div>
     </header>
