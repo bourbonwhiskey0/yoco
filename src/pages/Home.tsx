@@ -16,7 +16,7 @@ export default function Home() {
     <AppShell>
       <PageHero
         eyebrow="Today"
-        title={<>Ready to <span className="text-primary">level up</span>?</>}
+        title={<>Ready to <span className="text-primary">Level Up</span>?</>}
         subtitle="Pick up where you left off."
       />
 
