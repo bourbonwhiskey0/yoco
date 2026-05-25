@@ -61,20 +61,15 @@ export default function Routines() {
             className="block p-5 rounded-3xl bg-gradient-card shadow-card tap-scale animate-fade-in-up"
             style={{ animationDelay: `${idx * 40}ms` }}
           >
-            <div className="flex items-start justify-between gap-3">
-              <div className="min-w-0">
-                <h3 className="font-display text-lg font-semibold truncate">{r.name}</h3>
-                <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
-                  <span className="inline-flex items-center gap-1">
-                    <Clock className="w-3.5 h-3.5" /> {fmtTime(r.duration)}
-                  </span>
-                  <span className="inline-flex items-center gap-1">
-                    <Layers className="w-3.5 h-3.5" /> {r.sections.length} combos
-                  </span>
-                </div>
-              </div>
-              <div className="w-10 h-10 rounded-full bg-primary/15 flex items-center justify-center text-primary text-sm font-semibold">
-                {r.name.charAt(0).toUpperCase()}
+            <div className="min-w-0">
+              <h3 className="font-display text-lg font-semibold truncate">{r.name}</h3>
+              <div className="flex items-center gap-3 mt-2 text-xs text-muted-foreground">
+                <span className="inline-flex items-center gap-1">
+                  <Clock className="w-3.5 h-3.5" /> {fmtTime(r.duration)}
+                </span>
+                <span className="inline-flex items-center gap-1">
+                  <Layers className="w-3.5 h-3.5" /> {r.sections.length} combos
+                </span>
               </div>
             </div>
             {r.sections.length > 0 && (
