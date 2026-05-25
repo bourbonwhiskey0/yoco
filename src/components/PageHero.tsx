@@ -1,5 +1,4 @@
-import { ReactNode } from 'react';
-import { Link } from 'react-router-dom';
+import { ReactNode }  from 'react';
 import { useAuth } from '@/hooks/useAuth';
 
 type Props = {
@@ -16,11 +15,6 @@ function greetingFor(date = new Date()) {
   if (h < 12) return 'Good morning';
   if (h < 17) return 'Good afternoon';
   return 'Good evening';
-}
-
-function initials(name: string | null | undefined, email: string | null | undefined) {
-  const src = (name || email || 'Y').trim();
-  return src.slice(0, 1).toUpperCase();
 }
 
 export function PageHero({ greeting, title, eyebrow, subtitle, right }: Props) {
