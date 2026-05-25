@@ -32,7 +32,7 @@ export function BottomNav() {
             }
           >
             <Icon className="w-6 h-6" strokeWidth={2} />
-            <span className="text-[10px] font-medium uppercase tracking-wider">{label}</span>
+            <span className="text-[10px] font-medium tracking-wider">{label}</span>
           </NavLink>
         ))}
       </div>
