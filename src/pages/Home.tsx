@@ -57,7 +57,7 @@ export default function Home() {
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-display text-lg font-semibold">Recent Sessions</h3>
             {recent.length > 0 && (
-              <Link to="/history" className="text-xs text-muted-foreground">View all</Link>
+              <Link to="/history" className="text-sm text-accent font-medium">View All</Link>
             )}
           </div>
 
