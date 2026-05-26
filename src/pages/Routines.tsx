@@ -23,10 +23,10 @@ export default function Routines() {
         right={
           <Link
             to="/routines/new"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-primary-foreground tap-scale"
+            className="w-14 h-14 flex items-center justify-center rounded-[8px] bg-primary text-primary-foreground tap-scale mt-6"
             aria-label="New routine"
           >
-            <Plus className="w-5 h-5" />
+            <Plus className="w-7 h-7" />
           </Link>
         }
       />
