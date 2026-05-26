@@ -31,7 +31,7 @@ export default function Home() {
             <div className="absolute -right-12 -top-12 w-24 h-24 rounded-full bg-primary-foreground/5" />
             <div className="relative flex items-center justify-between">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-primary-foreground/70">Quick start</p>
+                <p className="text-xs font-semibold tracking-wider text-primary-foreground/70">Quick Start</p>
                 <h2 className="font-display text-xl font-bold text-primary-foreground mt-1">
                   {lastRoutine ? lastRoutine.name : 'Create your first routine'}
                 </h2>
