@@ -41,7 +41,7 @@ export function PageHero({ greeting, title, eyebrow, subtitle, right }: Props) {
           </h1>
           {subtitle && <p className="text-base text-muted-foreground mt-2">{subtitle}</p>}
         </div>
-        <div className="flex items-center gap-2 pt-1">
+        <div className="flex items-end gap-2 self-end">
           {right}
         </div>
       </div>
