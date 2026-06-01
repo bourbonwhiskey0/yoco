@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Play, Trash2, Zap, Video, Pencil, Coffee } from 'lucide-react';
+import { Play, Trash2, Zap, Video, Pencil, Timer } from 'lucide-react';
 import { AppShell } from '@/components/AppShell';
 import { PageHeader } from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
@@ -98,11 +98,11 @@ export default function RoutineDetail() {
                         ? 'bg-background text-muted-foreground'
                         : active ? 'bg-primary text-primary-foreground' : 'bg-background-soft text-muted-foreground'
                     }`}>
-                      {isBreak ? <Coffee className="w-4 h-4" /> : i + 1}
+                      {isBreak ? <Timer className="w-4 h-4" /> : i + 1}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium truncate">
-                        {s.name} {isBreak && <span className="text-xs text-muted-foreground font-normal">· break</span>}
+                        {s.name} {isBreak && <span className="text-xs text-muted-foreground font-normal">· interval</span>}
                       </p>
                       <p className="text-xs text-muted-foreground mt-0.5">
                         {fmtTime(s.start)} – {fmtTime(s.end)} · {fmtTime(s.end - s.start)}
