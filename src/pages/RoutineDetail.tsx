@@ -112,7 +112,7 @@ export default function RoutineDetail() {
                   </button>
                 </li>
               );
-            })}
+            }); })()}
             {routine.sections.length === 0 && (
               <li className="text-sm text-muted-foreground text-center py-6">No combos.</li>
             )}
