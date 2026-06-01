@@ -77,9 +77,10 @@ export default function RoutineDetail() {
           </div>
 
           <ul className="space-y-2">
-            {routine.sections.map((s, i) => {
+            {(() => { let comboNum = 0; return routine.sections.map((s) => {
               const active = selectedSection === s.id;
               const isBreak = !!s.isBreak;
+              if (!isBreak) comboNum += 1;
               return (
                 <li key={s.id}>
                   <button
@@ -98,7 +99,7 @@ export default function RoutineDetail() {
                         ? 'bg-background text-muted-foreground'
                         : active ? 'bg-primary text-primary-foreground' : 'bg-background-soft text-muted-foreground'
                     }`}>
-                      {isBreak ? <Timer className="w-4 h-4" /> : i + 1}
+                      {isBreak ? <Timer className="w-4 h-4" /> : comboNum}
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="font-medium truncate">
