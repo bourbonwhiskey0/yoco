@@ -42,22 +42,42 @@ export function RoutineForm({ initial, submitLabel, onSubmit }: Props) {
   );
 
   const addSection = (isBreak = false) => {
+    const total = Number(duration) || 0;
     const last = sections[sections.length - 1];
     const nextStart = last ? Number(last.start || 0) + Number(last.duration || 0) : 0;
+    const remaining = Math.max(0, total - nextStart);
+    if (remaining <= 0) {
+      toast.error('No time left in routine');
+      return;
+    }
+    const desired = isBreak ? 15 : 30;
+    const len = Math.min(desired, remaining);
     setSections([
       ...sections,
       {
         name: isBreak ? 'Break' : '',
         start: String(nextStart),
-        duration: isBreak ? '15' : '30',
+        duration: String(len),
         isBreak,
       },
     ]);
   };
 
   const update = (i: number, patch: Partial<Draft>) => {
-    setSections(sections.map((s, idx) => (idx === i ? { ...s, ...patch } : s)));
+    const total = Number(duration) || 0;
+    setSections(sections.map((s, idx) => {
+      if (idx !== i) return s;
+      const next = { ...s, ...patch };
+      if (patch.duration !== undefined || patch.start !== undefined) {
+        const start = Number(next.start) || 0;
+        const len = Number(next.duration) || 0;
+        const maxLen = Math.max(0, total - start);
+        if (len > maxLen) next.duration = String(maxLen);
+      }
+      return next;
+    }));
   };
+
 
   const remove = (i: number) => setSections(sections.filter((_, idx) => idx !== i));
 
