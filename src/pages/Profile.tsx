@@ -25,8 +25,6 @@ export default function Profile() {
 
   useEffect(() => { setName(profile?.display_name ?? ''); }, [profile?.display_name]);
 
-  const totalMs = sessions.reduce((acc, s) => acc + s.durationMs, 0);
-  const totalMin = Math.round(totalMs / 60000);
 
   const save = async () => {
     const parsed = nameSchema.safeParse(name);
