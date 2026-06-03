@@ -31,7 +31,7 @@ export function PageHero({ greeting, title, eyebrow, subtitle, right }: Props) {
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0 flex-1">
           {eyebrow && (
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary mb-3">
+            <p className="text-[11px] font-semibold tracking-[0.18em] text-primary mb-3">
               {eyebrow}
             </p>
           )}

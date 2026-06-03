@@ -82,7 +82,7 @@ export default function Practice() {
       </div>
 
       <main className="relative px-6 mt-8 flex flex-col items-center text-center">
-        <p className="text-xs uppercase tracking-widest text-muted-foreground">{section ? 'Combo' : 'Routine'}</p>
+        <p className="text-xs tracking-widest text-muted-foreground">{section ? 'Combo' : 'Routine'}</p>
         <h1 className="font-display text-2xl font-bold mt-1 text-balance">{section?.name ?? routine.name}</h1>
         {!section && currentSection && (
           <p className="text-sm text-primary mt-1 animate-fade-in">Now: {currentSection.name}</p>

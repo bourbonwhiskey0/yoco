@@ -58,7 +58,7 @@ export default function RoutineDetail() {
       } />
       <main className="flex-1 px-6 py-2 pb-6">
         <section className="animate-fade-in-up">
-          <p className="text-xs uppercase tracking-wider text-muted-foreground">Routine</p>
+          <p className="text-xs tracking-wider text-muted-foreground">Routine</p>
           <h1 className="font-display text-3xl font-bold mt-1 text-balance">{routine.name}</h1>
           <p className="text-sm text-muted-foreground mt-2">{fmtTime(routine.duration)} total · {routine.sections.length} combos</p>
         </section>
