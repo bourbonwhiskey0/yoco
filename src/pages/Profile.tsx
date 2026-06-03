@@ -128,11 +128,6 @@ export default function Profile() {
           </div>
         </section>
 
-        <section className="grid grid-cols-3 gap-3">
-          <Stat label="Sessions" value={sessions.length} />
-          <Stat label="Minutes" value={totalMin} />
-          <Stat label="Routines" value={routines.length} />
-        </section>
 
         <Button
           variant="outline"
