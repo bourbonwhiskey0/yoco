@@ -13,8 +13,6 @@ import { z } from 'zod';
 const nameSchema = z.string().trim().min(1, 'Name cannot be empty').max(60);
 
 export default function Profile() {
-  const sessions = useStore(s => s.sessions);
-  const routines = useStore(s => s.routines);
   const { user, profile, refreshProfile, signOut } = useAuth();
 
   const [editing, setEditing] = useState(false);
