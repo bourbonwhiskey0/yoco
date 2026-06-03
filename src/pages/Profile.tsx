@@ -13,8 +13,6 @@ import { z } from 'zod';
 const nameSchema = z.string().trim().min(1, 'Name cannot be empty').max(60);
 
 export default function Profile() {
-  const sessions = useStore(s => s.sessions);
-  const routines = useStore(s => s.routines);
   const { user, profile, refreshProfile, signOut } = useAuth();
 
   const [editing, setEditing] = useState(false);
@@ -25,8 +23,6 @@ export default function Profile() {
 
   useEffect(() => { setName(profile?.display_name ?? ''); }, [profile?.display_name]);
 
-  const totalMs = sessions.reduce((acc, s) => acc + s.durationMs, 0);
-  const totalMin = Math.round(totalMs / 60000);
 
   const save = async () => {
     const parsed = nameSchema.safeParse(name);
@@ -132,11 +128,6 @@ export default function Profile() {
           </div>
         </section>
 
-        <section className="grid grid-cols-3 gap-3">
-          <Stat label="Sessions" value={sessions.length} />
-          <Stat label="Minutes" value={totalMin} />
-          <Stat label="Routines" value={routines.length} />
-        </section>
 
         <Button
           variant="outline"
@@ -150,11 +141,3 @@ export default function Profile() {
   );
 }
 
-function Stat({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="rounded-2xl bg-card p-4 text-center">
-      <p className="font-display text-2xl font-bold">{value}</p>
-      <p className="text-[11px] tracking-wider text-muted-foreground mt-1">{label}</p>
-    </div>
-  );
-}
