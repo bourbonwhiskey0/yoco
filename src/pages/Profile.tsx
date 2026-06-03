@@ -154,7 +154,7 @@ function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div className="rounded-2xl bg-card p-4 text-center">
       <p className="font-display text-2xl font-bold">{value}</p>
-      <p className="text-[11px] uppercase tracking-wider text-muted-foreground mt-1">{label}</p>
+      <p className="text-[11px] tracking-wider text-muted-foreground mt-1">{label}</p>
     </div>
   );
 }

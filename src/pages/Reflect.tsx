@@ -87,7 +87,7 @@ export default function Reflect() {
       <PageHeader title="Reflect" back />
       <main className="flex-1 px-6 py-4 space-y-7 pb-10">
         <section className="animate-fade-in-up">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">Quick reflection</p>
+          <p className="text-xs tracking-widest text-muted-foreground">Quick reflection</p>
           <h1 className="font-display text-2xl font-bold mt-1 text-balance">How did that feel?</h1>
         </section>
 
@@ -136,7 +136,7 @@ export default function Reflect() {
           <section className="p-5 rounded-3xl bg-gradient-card border border-primary/20 animate-fade-in-up">
             <div className="flex items-center gap-2 mb-2">
               <Sparkles className="w-4 h-4 text-primary" />
-              <p className="text-xs font-semibold uppercase tracking-wider text-primary">YoCo insight</p>
+              <p className="text-xs font-semibold tracking-wider text-primary">YoCo insight</p>
             </div>
             <p className="text-base leading-relaxed text-balance">{insight}</p>
           </section>
